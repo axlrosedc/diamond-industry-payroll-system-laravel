@@ -58,3 +58,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'advance/cash/', 'as' => 'cash
     Route::post('/update/{id}', [CashAdvanceController::class,'update'])->name('.update');
     Route::post('/fetch_data',[CashAdvanceController::class,'fetch_data'])->name('.fetch_data');
 });
+
+Route::get('/file-import',[TimeSheetController::class, 'importView'])->name('import-view'); 
+Route::post('/import',[TimeSheetController::class, 'import'])->name('import');

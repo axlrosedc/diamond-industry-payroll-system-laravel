@@ -16,8 +16,21 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ImportExcelClass;
+
 class TimeSheetController extends Controller
 {
+    public function importView(Request $request){
+        return view('importFile');
+    }
+
+    public function import(Request $request){
+        Excel::import(new ImportExcelClass, 
+                      $request->file('file')->store('files'));
+        return redirect()->back();
+    }
+
     public function assign(Request $request){
 
         $this->validate($request, [
